@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: git-cli-task
+spec:
+  params:
+    - name: git-repo-url
+      type: string
+  steps:
+    - name: commit-and-push
+      image: alpine/git
+      script: |
+        git clone $(params.git-repo-url) repo
+        cd repo
+        cp -r $(params.app-name) .
+        git add .
+        git commit -m "Añadido el Helm chart de $(params.app-name) con recursos separados"
+        git push
