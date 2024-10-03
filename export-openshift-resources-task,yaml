@@ -1,0 +1,22 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: export-openshift-resources-task
+spec:
+  params:
+    - name: app-name
+      type: string
+    - name: namespace
+      type: string
+  steps:
+    - name: export-resources
+      image: bitnami/kubectl
+      script: |
+        oc get deployment -l app=$(params.app-name) -n $(params.namespace) -o yaml > deployment.yaml
+        oc get service -l app=$(params.app-name) -n $(params.namespace) -o yaml > service.yaml
+        oc get route -l app=$(params.app-name) -n $(params.namespace) -o yaml > route.yaml
+        oc get configmap -l app=$(params.app-name) -n $(params.namespace) -o yaml > configmap.yaml
+        oc get secret -l app=$(params.app-name) -n $(params.namespace) -o yaml > secret.yaml
+        oc get pvc -l app=$(params.app-name) -n $(params.namespace) -o yaml > pvc.yaml
+        mkdir -p resources
+        mv *.yaml resources/
