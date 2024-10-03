@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: generate-helm-chart-task
+spec:
+  steps:
+    - name: create-helm-chart
+      image: alpine/helm
+      script: |
+        helm create $(params.app-name)
+        mv resources/* $(params.app-name)/templates/
+        echo "Helm chart generado y los recursos se han copiado a la carpeta templates"
