@@ -1,0 +1,33 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: helm-chart-generator-openshift-pipeline
+spec:
+  params:
+    - name: git-repo-url
+      type: string
+      description: "URL del repositorio Git"
+    - name: app-name
+      type: string
+      description: "Nombre de la aplicación en OpenShift"
+    - name: namespace
+      type: string
+      description: "Namespace donde está desplegada la aplicación"
+  tasks:
+    - name: export-openshift-resources
+      taskRef:
+        name: export-openshift-resources-task
+      params:
+        - name: app-name
+          value: "$(params.app-name)"
+        - name: namespace
+          value: "$(params.namespace)"
+    - name: generate-helm-chart
+      taskRef:
+        name: generate-helm-chart-task
+    - name: push-to-git
+      taskRef:
+        name: git-cli-task
+      params:
+        - name: git-repo-url
+          value: "$(params.git-repo-url)"
