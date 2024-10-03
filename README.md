@@ -6,3 +6,6 @@ Generación del Helm Chart: La segunda tarea crea el Helm chart y organiza los r
 Subida a Git: La tercera tarea clona el repositorio Git, agrega los cambios, y realiza el push al repositorio.
 
 Este pipeline es totalmente parametrizado, adaptable a diferentes aplicaciones, y asegura que todos los recursos estén correctamente organizados en un Helm chart.
+
+EL fichero exportar_recursos.yaml es para kubernetes
+El fichero exportar.openshift-recurswos es para oopenshift 
