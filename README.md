@@ -10,4 +10,4 @@ La tercera tarea clona el repositorio Git, agrega los cambios, y realiza el push
 
 Este pipeline es totalmente parametrizado, adaptable a diferentes aplicaciones, y asegura que todos los recursos estén correctamente organizados en un Helm chart.
 
-para usar en kubernetes usa pipeline d el acarpeta kubernetes par aopenshift el d ela carpèta openshift
+para usar en kubernetes usa pipeline de la carpeta kubernetes par aopenshift el de la carpèta openshift
