@@ -7,5 +7,4 @@ pipeline parametrizado de Tekton que genera un Helm chart
 
 Este pipeline es totalmente parametrizado, adaptable a diferentes aplicaciones, y asegura que todos los recursos estén correctamente organizados en un Helm chart.
 
-EL fichero exportar_recursos.yaml es para kubernetes
-El fichero exportar.openshift-recursos es para openshift 
+para usar en kubernetes usa pipeline d el acarpeta kubernetes par aopenshift el d ela carpèta openshift
